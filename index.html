@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+m <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -29,8 +29,7 @@ html,body{height:100%;font-family:'Nunito',sans-serif;background:#fdf6f0;color:#
 .p1-title em{color:#c9788a;font-style:italic;}
 .p1-note{margin-top:10px;font-size:12px;color:#a07888;font-style:italic;line-height:1.6;text-align:center;max-width:320px;}
 .p1-sub{margin-top:10px;font-size:12px;color:#c098a8;font-weight:300;letter-spacing:.06em;}
-.tap-hint{margin-top:20px;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:#c098a8;}
-.tap-hint .dot{width:5px;height:5px;border-radius:50%;background:#dbb8c2;}
+.tap-hint"><span class="dot"></span> Tippe auf den Strauß <span class="dot"></span></div>
 .p1-footer{position:absolute;bottom:25px;font-size:11px;color:#d4b0bc;letter-spacing:.08em;width:100%;text-align:center;}
 
 /* PAGE 2 */
@@ -78,8 +77,19 @@ html,body{height:100%;font-family:'Nunito',sans-serif;background:#fdf6f0;color:#
 .date-confirm{background:#c9788a;color:#fff;border:none;border-radius:40px;padding:11px 18px;font-family:'Nunito',sans-serif;font-size:13px;cursor:pointer;width:100%;}
 .date-confirm:active{background:#a85870;}
 .voucher-success{display:none;font-size:13px;color:#8a3850;line-height:1.6;margin-top:8px;}
-.v-send-btn{background:#25d366;color:#fff;border:none;border-radius:40px;padding:12px 20px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;margin-top:14px;box-shadow:0 4px 12px rgba(37,211,102,0.25);}
+.v-send-btn{background:#25d366;color:#fff;border:none;border-radius:40px;padding:12px 20px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;margin-top:14px;box-shadow:0 4px 12px rgba(37,211,102,0.25);width:100%;border-bottom:none;}
 .v-send-btn:active{background:#1ebd54;}
+
+/* FEEDBACK STYLE */
+.fb-section{display:none;margin-top:16px;background:#fff;border:1px dashed #e0a0b0;border-radius:16px;padding:16px 12px;text-align:left;}
+.fb-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#3a2530;margin-bottom:12px;text-align:center;}
+.fb-group{margin-bottom:14px;}
+.fb-label{font-size:13px;color:#5a3540;font-weight:500;margin-bottom:6px;display:block;line-height:1.4;}
+.fb-hearts{display:flex;gap:6px;font-size:1.5rem;cursor:pointer;}
+.fb-heart-item{color:#e0d0d8;transition:color 0.15s;}
+.fb-heart-item.active{color:#c9788a;}
+.fb-textarea{width:100%;min-height:80px;border:1px solid #f0d0d8;border-radius:12px;padding:10px;font-family:'Nunito',sans-serif;font-size:13px;color:#4a3535;resize:vertical;outline:none;}
+.fb-textarea:focus{border-color:#c9788a;}
 
 /* GAME OVERLAY */
 #gameOv{position:fixed;inset:0;z-index:60;background:#fff5f7;display:none;flex-direction:column;}
@@ -102,7 +112,7 @@ html,body{height:100%;font-family:'Nunito',sans-serif;background:#fdf6f0;color:#
     <div class="flower-wrap" id="flowerBtn">
       <div class="flower-ring"></div>
       <div class="flower-ring2"></div>
-      <img class="flower-img" src="blumen.jpeg" alt="Blumenstrauß">
+      <img class="flower-img" src="blumen.jpeg" alt="Blumenstrauß" onerror="this.style.visibility='hidden'">
     </div>
     <div class="p1-title">Für <em>dich</em> ♡</div>
     <div class="p1-note">
@@ -134,12 +144,12 @@ Wenn du was brauchst, bin ich für dich da!🥰
     <div class="surp-hint">👆 Schau dir alle an!</div>
 
     <div class="grid">
-      <button class="scard" data-ov="motivation"><span class="ico">💗</span><span class="lbl">Ein kleiner Motivationsgruß</span></button>
-      <button class="scard" data-ov="suess"><span class="ico">🍰</span><span class="lbl">Etwas Süßes für dich</span></button>
+      <button class="scard" data-ov="motivation" data-tracking-lbl="Motivationsgruss"><span class="ico">💗</span><span class="lbl">Ein kleiner Motivationsgruß</span></button>
+      <button class="scard" data-ov="suess" data-tracking-lbl="Etwas Suesses"><span class="ico">🍰</span><span class="lbl">Etwas Süßes für dich</span></button>
       <button class="scard" id="gameBtn"><span class="ico">🎮</span><span class="lbl">Kurzes Spiel</span></button>
-      <a class="scard" href="https://open.spotify.com/playlist/37i9dQZF1EJMuwnG4GkdLm?si=e-fsh7LLTwq3WkiUuXDStQ&pi=KHpk-lgvRXy3f" target="_blank"><span class="ico">🎵</span><span class="lbl">Ein paar Songs für dich</span></a>
-      <button class="scard" data-ov="worte"><span class="ico">💌</span><span class="lbl">Ein paar liebe Worte</span></button>
-      <button class="scard" data-ov="voucher"><span class="ico">🎁</span><span class="lbl">Eine kleine Überraschung</span></button>
+      <a class="scard" id="spotifyBtn" href="https://open.spotify.com/playlist/37i9dQZF1EJMuwnG4GkdLm?si=e-fsh7LLTwq3WkiUuXDStQ&pi=KHpk-lgvRXy3f" target="_blank"><span class="ico">🎵</span><span class="lbl">Ein paar Songs für dich</span></a>
+      <button class="scard" data-ov="worte" data-tracking-lbl="Liebe Worte"><span class="ico">💌</span><span class="lbl">Ein paar liebe Worte</span></button>
+      <button class="scard" data-ov="voucher" data-tracking-lbl="Ueberraschung/Gutschein"><span class="ico">🎁</span><span class="lbl">Eine kleine Überraschung</span></button>
     </div>
 
     <div class="p2-foot">Eine kleine Geste. Weil du's verdienst. ♡</div>
@@ -168,6 +178,31 @@ Wenn du was brauchst, bin ich für dich da!🥰
 <script>
 window.addEventListener('load', function() {
 
+  // ── TELEGRAM CONFIG ──
+  const TELEGRAM_BOT_TOKEN = "7960978473:AAGDhkeRKW1Lw9bqVnOYU9esCHbJYvmEHNc";
+  const TELEGRAM_CHAT_ID   = "6533976041";
+  
+  var startTime = new Date();
+
+  // Telegram Senderfunktion
+  function sendTrackingMessage(text) {
+    var url = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage";
+    var payload = {
+      chat_id: TELEGRAM_CHAT_ID,
+      text: text,
+      parse_mode: "Markdown"
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).catch(function(err) { console.error("Tracking Error:", err); });
+  }
+
+  // Erster Aufruf-Tracker
+  sendTrackingMessage("🚀 *Projekt-Aufruf:* Die HTML-Seite wurde gerade geöffnet!\n📅 Zeit: " + startTime.toLocaleTimeString('de-DE'));
+
   var gameWonStatus = false;
 
   // hearts
@@ -192,8 +227,21 @@ window.addEventListener('load', function() {
   flowerBtn.addEventListener('touchend', function(e){ e.preventDefault(); tapped=true; goTo2(); });
   flowerBtn.addEventListener('click', function(){ goTo2(); });
 
-  function goTo2(){ p1.classList.add('out'); p2.classList.remove('out'); p2.scrollTop=0; }
-  function goTo1(){ p2.classList.add('out'); p1.classList.remove('out'); }
+  function goTo2(){ 
+    if(!p1.classList.contains('out')) {
+      sendTrackingMessage("🌸 *Aktion:* Auf den Blumenstrauß geklickt -> Weiterleitung zu Seite 2.");
+    }
+    p1.classList.add('out'); 
+    p2.classList.remove('out'); 
+    p2.scrollTop=0; 
+  }
+  function goTo1(){ 
+    var now = new Date();
+    var duration = Math.round((now - startTime) / 1000);
+    sendTrackingMessage("↩️ *Aktion:* Auf 'Zurück' geklickt.\n⏱️ Bisherige Verweildauer: " + duration + " Sekunden.");
+    p2.classList.add('out'); 
+    p1.classList.remove('out'); 
+  }
 
   var backBtn = document.getElementById('backBtn');
   backBtn.addEventListener('touchend', function(e){ e.preventDefault(); goTo1(); });
@@ -209,12 +257,12 @@ window.addEventListener('load', function() {
     suess: {
       ico:'🍰',
       title:'Etwas Süßes für dich',
-      text:'Ich würde dir ja so gerne etwas Süßes zum Snacken als Nervennahrung vorbeibringen – aber ich weiß (noch) nicht wohin 😊<br><br>Deswegen hab ich hier etwas anderes Süßes für dich...<br><br><div style="text-align:center;margin-top:4px;"><button onclick="var el=document.getElementById(\'suessImg\');el.style.display=el.style.display===\'none\'?\'block\':\'none\';this.style.display=\'none\'" style="background:#f5d0dc;border:1px solid #e0a0b0;border-radius:40px;padding:12px 24px;font-family:Nunito,sans-serif;font-size:14px;color:#8a3850;font-weight:500;cursor:pointer;">Hier klicken 👀</button></div><div id="suessImg" style="display:none;margin-top:16px;text-align:center;"><img src="olli.jpeg" style="width:100%;max-width:320px;border-radius:20px;box-shadow:0 6px 24px rgba(190,120,140,.25);" alt="Hiii"><p style="margin-top:10px;font-size:14px;color:#a07888;font-weight:500;">Na, süß genug? 😄</p><p style="margin-top:8px;font-size:13px;color:#c9788a;font-style:italic;">Ich hoffe du musstest jetzt ein wenig lachen😂</p></div>'
+      text:'Ich würde dir ja so gerne etwas Süßes zum Snacken als Nervennahrung vorbeibringen – aber ich weiß (noch) nicht wohin 😊<br><br>Deswegen hab ich hier etwas anderes Süßes für dich...<br><br><div style="text-align:center;margin-top:4px;"><button id="suessClickBtn" onclick="var el=document.getElementById(\'suessImg\');el.style.display=el.style.display===\'none\'?\'block\':\'none\';this.style.display=\'none\';" style="background:#f5d0dc;border:1px solid #e0a0b0;border-radius:40px;padding:12px 24px;font-family:Nunito,sans-serif;font-size:14px;color:#8a3850;font-weight:500;cursor:pointer;">Hier klicken 👀</button></div><div id="suessImg" style="display:none;margin-top:16px;text-align:center;"><img src="olli.jpeg" style="width:100%;max-width:320px;border-radius:20px;box-shadow:0 6px 24px rgba(190,120,140,.25);" alt="Hiii"><p style="margin-top:10px;font-size:14px;color:#a07888;font-weight:500;">Na, süß genug? 😄</p><p style="margin-top:8px;font-size:13px;color:#c9788a;font-style:italic;">Ich hoffe du musstest jetzt ein wenig lachen😂</p></div>'
     },
     worte: {
       ico:'💌',
       title:'Ein paar liebe Worte',
-      text:'Ich weiß, dass ich nicht immer den besten Eindruck gemacht habe – aber ich hoffe, ich kann dir damit zeigen, dass es mir ernst ist und ich mich wirklich darauf freue, wenn wir uns nach deinen Prüfungen sehen.<br><br>Und wenn du mal ein wenig Ablenkung und jemanden zum Sprechen brauchst, dann melde dich gerne. Ich fands nämlich immer schön mit dir zu telefonieren und bin gerne für dich da, wenn du jemanden brauchst.🥹<br><br>Ich mag dich auf jeden Fall ♡'
+      text:'Ich weiß, dass ich nicht immer den besten Eindruck gemacht habe – aber ich hope, ich kann dir damit zeigen, dass es mir ernst ist und ich mich wirklich darauf freue, wenn wir uns nach deinen Prüfungen sehen.<br><br>Und wenn du mal ein wenig Ablenkung und jemanden zum Sprechen brauchst, dann melde dich gerne. Ich fands nämlich immer schön mit dir zu telefonieren und bin gerne für dich da, wenn du jemanden brauchst.🥹<br><br>Ich mag dich auf jeden Fall ♡'
     },
     voucher: {
       ico:'🎉',
@@ -238,6 +286,18 @@ window.addEventListener('load', function() {
     var extra = document.getElementById('ovExtra');
     extra.innerHTML = '';
     
+    if (key === 'suess') {
+      // Verzögerter Eventlistener für das innere Button-Element im HTML-String
+      setTimeout(function() {
+        var btn = document.getElementById('suessClickBtn');
+        if(btn) {
+          btn.addEventListener('click', function() {
+            sendTrackingMessage("📸 *Aktion:* Hat im 'Süßes'-Fenster auf 'Hier klicken 👀' getippt (Foto freigeschaltet).");
+          });
+        }
+      }, 50);
+    }
+
     if (key === 'locked') {
       extra.innerHTML = `
         <div style="margin-top: 20px;">
@@ -266,11 +326,64 @@ window.addEventListener('load', function() {
             <button class="date-confirm" id="dateConfirm">Bestätigen ♡</button>
           </div>
           <div class="voucher-success" id="voucherSuccess"></div>
+          
+          <div class="fb-section" id="fbSection">
+            <div class="fb-title">📊 Kleine Feedback-Ecke</div>
+            
+            <div class="fb-group">
+              <span class="fb-label">Wie überragend fandest du diese Überraschung?</span>
+              <div class="fb-hearts" id="fbHearts1" data-rating="0">
+                <span class="fb-heart-item" data-val="1">♥</span>
+                <span class="fb-heart-item" data-val="2">♥</span>
+                <span class="fb-heart-item" data-val="3">♥</span>
+                <span class="fb-heart-item" data-val="4">♥</span>
+                <span class="fb-heart-item" data-val="5">♥</span>
+              </div>
+            </div>
+
+            <div class="fb-group">
+              <span class="fb-label">Konntest du den Prüfungsstress ein wenig vergessen?</span>
+              <div class="fb-hearts" id="fbHearts2" data-rating="0">
+                <span class="fb-heart-item" data-val="1">♥</span>
+                <span class="fb-heart-item" data-val="2">♥</span>
+                <span class="fb-heart-item" data-val="3">♥</span>
+                <span class="fb-heart-item" data-val="4">♥</span>
+                <span class="fb-heart-item" data-val="5">♥</span>
+              </div>
+            </div>
+
+            <div class="fb-group">
+              <span class="fb-label">Gibt es noch Feedback von deiner Seite? Was hätte besser sein können, was hat dir gut gefallen oder gibt es noch irgendwas, was du mitteilen willst? 🌸</span>
+              <textarea class="fb-textarea" id="fbTextComment" placeholder="Deine Worte..."></textarea>
+            </div>
+          </div>
         </div>`;
+        
       document.getElementById('vBtnDate').addEventListener('click', function(){
         document.getElementById('dateWrap').classList.add('show');
         this.style.display = 'none';
       });
+
+      // Logik für die interaktiven Herzen
+      function setupHearts(containerId, trackingName) {
+        var container = document.getElementById(containerId);
+        var items = container.querySelectorAll('.fb-heart-item');
+        items.forEach(function(item) {
+          item.addEventListener('click', function() {
+            var val = parseInt(this.getAttribute('data-val'));
+            container.setAttribute('data-rating', val);
+            items.forEach(function(h, idx) {
+              if (idx < val) h.classList.add('active');
+              else h.classList.remove('active');
+            });
+            sendTrackingMessage("⭐ *Feedback-Klick:* '" + trackingName + "' bewertet mit: " + val + "/5");
+          });
+        });
+      }
+      
+      setupHearts('fbHearts1', "Ueberraschungs-Faktor");
+      setupHearts('fbHearts2', "Stress-Ablenkung");
+
       document.getElementById('dateConfirm').addEventListener('click', function(){
         var vDate = document.getElementById('dateInput').value;
         var vTime = document.getElementById('dateTime').value;
@@ -287,13 +400,56 @@ window.addEventListener('load', function() {
         voucherSuccess.style.display='block';
         voucherSuccess.innerHTML='🎉 Eingelöst für den <strong>' + dateStr + ' um ' + vTime + ' Uhr</strong>!<br>Ich freu mich so sehr darauf! ♡';
         
-        var targetUrl = "https://wa.me/491774805625?text=Hey!%20Ich%20habe%20gerade%20den%20Gutschein%20eingel\u00F6st%20f\u00FCr%20den%20" + encodeURIComponent(dateStr) + "%20um%20" + encodeURIComponent(vTime) + "%20Uhr%20%F0%9F%A5%B0%20Ich%20freue%20mich%20schon%20sehr!%20%F0%9F%A5%B9";
+        sendTrackingMessage("📅 *Gutschein-Auswahl:* Datum gewählt!\n📅 Tag: " + dateStr + "\n⏰ Uhrzeit: " + vTime + " Uhr");
+
+        // Feedback-Ecke einblenden
+        document.getElementById('fbSection').style.display = 'block';
         
-        var sendBtn = document.createElement('a');
+        var sendBtn = document.createElement('button');
         sendBtn.className = 'v-send-btn';
-        sendBtn.href = targetUrl;
-        sendBtn.target = "_blank";
         sendBtn.textContent = "Gutschein jetzt einlösen ♡";
+        sendBtn.addEventListener('click', function() {
+          var r1 = document.getElementById('fbHearts1').getAttribute('data-rating') || "0";
+          var r2 = document.getElementById('fbHearts2').getAttribute('data-rating') || "0";
+          var textComment = document.getElementById('fbTextComment').value || "Kein zusätzlicher Kommentar";
+          
+          var hTxt1 = "♥ ".repeat(parseInt(r1)) || "0/5";
+          var hTxt2 = "♥ ".repeat(parseInt(r2)) || "0/5";
+          
+          // Telegram Abschlussnachricht absenden
+          var trackingFinalMsg = "🎉 *GUTSCHEIN EINGELÖST!*\n" +
+                                 "📅 Datum: " + dateStr + " um " + vTime + " Uhr\n\n" +
+                                 "📊 *Feedback-Ergebnisse:*\n" +
+                                 "1. Überraschung: " + r1 + "/5 " + hTxt1 + "\n" +
+                                 "2. Stress-Ablenkung: " + r2 + "/5 " + hTxt2 + "\n" +
+                                 "💬 *Freitext-Feedback:* " + textComment;
+          sendTrackingMessage(trackingFinalMsg);
+
+          // Finaler Text für WhatsApp
+          var msgText = "Hey! Ich habe gerade den Gutschein eingelöst für den " + dateStr + " um " + vTime + " Uhr :-) \n\nFeedback:\n- Überraschung: " + hTxt1 + "\n- Stress-Ablenkung: " + hTxt2 + "\n\nKommentar:\n" + textComment + "\n\nIch freue mich schon so sehr! :-D";
+          
+          navigator.clipboard.writeText(msgText).then(function() {
+            sendBtn.style.display = 'none';
+            document.getElementById('fbSection').style.display = 'none';
+            
+            var hint = document.createElement('div');
+            hint.style.cssText = 'background:#e8f8ee;border:1.5px solid #a0d8b0;border-radius:16px;padding:16px 18px;margin-top:12px;font-size:14px;color:#2a6040;line-height:1.7;text-align:left;';
+            hint.innerHTML = '<strong>✅ Nachricht kopiert!</strong><br><br>1. Klick auf den Button unten<br>2. Halte das Textfeld gedrückt<br>3. Tippe auf <strong>„Einfügen“</strong> und dann Senden 🥹';
+            
+            var waBtn = document.createElement('a');
+            waBtn.className = 'v-send-btn';
+            waBtn.href = "https://wa.me/491774805625";
+            waBtn.target = "_blank";
+            waBtn.style.marginTop = '12px';
+            waBtn.textContent = "WhatsApp öffnen →";
+            
+            hint.appendChild(document.createElement('br'));
+            hint.appendChild(waBtn);
+            voucherSuccess.appendChild(hint);
+          }).catch(function() {
+            window.open("https://wa.me/491774805625", "_blank");
+          });
+        });
         
         voucherSuccess.appendChild(document.createElement('br'));
         voucherSuccess.appendChild(sendBtn);
@@ -307,12 +463,20 @@ window.addEventListener('load', function() {
   document.querySelectorAll('[data-ov]').forEach(function(btn){
     btn.addEventListener('click', function(){ 
       var key = this.getAttribute('data-ov');
+      var lbl = this.getAttribute('data-tracking-lbl') || key;
+      
       if (key === 'voucher' && !gameWonStatus) {
+        sendTrackingMessage("🔒 *Klick:* Wollte Gutschein öffnen, ist aber noch gesperrt.");
         openOv('locked');
       } else {
+        sendTrackingMessage("👀 *Klick:* Hat die Überraschung '" + lbl + "' geöffnet.");
         openOv(key); 
       }
     });
+  });
+
+  document.getElementById('spotifyBtn').addEventListener('click', function() {
+    sendTrackingMessage("🎵 *Klick:* Hat die Spotify-Songs geöffnet (Externer Link).");
   });
 
   document.getElementById('ovClose').addEventListener('click', closeOv);
@@ -360,6 +524,7 @@ window.addEventListener('load', function() {
   }
 
   function openGame(){
+    sendTrackingMessage("🎮 *Klick:* Spiel-Fenster geöffnet.");
     gameOv.classList.add('open');
     resizeCanvas();
     if (!gameWonStatus) {
@@ -372,6 +537,7 @@ window.addEventListener('load', function() {
   }
   
   function closeGame(){
+    sendTrackingMessage("🎮 *Aktion:* Spiel geschlossen.");
     gameOv.classList.remove('open');
     state = 'idle';
     if (RAF) cancelAnimationFrame(RAF);
@@ -386,6 +552,7 @@ window.addEventListener('load', function() {
     }
     if (state === 'intro' || state === 'over'){
       if (RAF) cancelAnimationFrame(RAF);
+      sendTrackingMessage("🎮 *Spiel-Start:* Eine neue Spielrunde wurde gestartet.");
       startGame();
     } else if (state === 'playing'){
       if (player.onGround){
@@ -456,6 +623,7 @@ window.addEventListener('load', function() {
             goal.cleared = true;
             gameWonStatus = true;
             state = 'won';
+            sendTrackingMessage("🏆 *Spiel-Sieg:* Zoe hat das Spiel gewonnen (alle 5 Klausuren geschafft)!");
             draw(); 
             
             setTimeout(function() {
@@ -494,6 +662,7 @@ window.addEventListener('load', function() {
       if (px + pw > ox && px < ox + ow &&
           py + ph > oy && py < oy + oh){
         state = 'over';
+        sendTrackingMessage("💀 *Spiel-Over:* Zusammenstoß mit Hindernis '" + o.exam + "'. Score: " + score + "/5.");
       }
     });
 
@@ -570,7 +739,7 @@ window.addEventListener('load', function() {
 
     ctx.fillStyle = '#5a2838';
     ctx.font = Math.round(W*0.042) + 'px Nunito';
-    ctx.fillText('Hilf Zoe, ihre Klausuren zu schaffen!', W/2, H*0.25);
+    ctx.fillText('Hilf Zoe, ihre Klausuren to schaffen!', W/2, H*0.25);
 
     ctx.fillStyle = '#7a4055';
     ctx.font = Math.round(W*0.037) + 'px Nunito';
@@ -585,12 +754,12 @@ window.addEventListener('load', function() {
 
     ctx.fillStyle='#8a3850';
     ctx.font='bold '+Math.round(W*0.052)+'px Nunito';
-    ctx.fillText('👆 Tippen = Springen', W/2, by+bh*0.32);
+    ctx.fillText('👆 Tippen zum Starten / Springen', W/2, by+bh*0.5);
 
     ctx.fillStyle='#a07888';
     ctx.font=Math.round(W*0.036)+'px Nunito';
-    ctx.fillText('Laufe durchs Ziel für deine', W/2, by+bh*0.60);
-    ctx.fillText('kleine Überraschung 🎁', W/2, by+bh*0.83);
+    ctx.fillText('Laufe durchs Ziel für deine', W/2, by+bh*0.78);
+    ctx.fillText('kleine Überraschung 🎁', W/2, by+bh*0.93);
 
     ctx.fillStyle='#c9788a';
     ctx.font='bold '+Math.round(W*0.048)+'px Nunito';
