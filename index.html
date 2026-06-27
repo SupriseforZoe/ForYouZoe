@@ -78,8 +78,6 @@ html,body{height:100%;font-family:'Nunito',sans-serif;background:#fdf6f0;color:#
 .date-confirm{background:#c9788a;color:#fff;border:none;border-radius:40px;padding:11px 18px;font-family:'Nunito',sans-serif;font-size:13px;cursor:pointer;width:100%;}
 .date-confirm:active{background:#a85870;}
 .voucher-success{display:none;font-size:13px;color:#8a3850;line-height:1.6;margin-top:8px;}
-.v-send-btn{background:#25d366;color:#fff;border:none;border-radius:40px;padding:12px 20px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;margin-top:14px;box-shadow:0 4px 12px rgba(37,211,102,0.25);width:100%;border-bottom:none;}
-.v-send-btn:active{background:#1ebd54;}
 
 /* FEEDBACK STYLE */
 .fb-section{display:none;margin-top:16px;background:#fff;border:1px dashed #e0a0b0;border-radius:16px;padding:16px 12px;text-align:left;}
@@ -91,6 +89,10 @@ html,body{height:100%;font-family:'Nunito',sans-serif;background:#fdf6f0;color:#
 .fb-heart-item.active{color:#c9788a;}
 .fb-textarea{width:100%;min-height:80px;border:1px solid #f0d0d8;border-radius:12px;padding:10px;font-family:'Nunito',sans-serif;font-size:13px;color:#4a3535;resize:vertical;outline:none;}
 .fb-textarea:focus{border-color:#c9788a;}
+
+.v-send-btn{background:#25d366;color:#fff;border:none;border-radius:40px;padding:12px 20px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;margin-top:14px;box-shadow:0 4px 12px rgba(37,211,102,0.25);width:100%;border-bottom:none;}
+.v-send-btn:active{background:#1ebd54;}
+.v-send-btn:disabled{background:#d0d0d0;color:#808080;box-shadow:none;cursor:not-allowed;}
 
 /* GAME OVERLAY */
 #gameOv{position:fixed;inset:0;z-index:60;background:#fff5f7;display:none;flex-direction:column;}
@@ -188,7 +190,6 @@ window.addEventListener('load', function() {
   
   var startTime = new Date();
 
-  // Telegram Senderfunktion
   function sendTrackingMessage(text) {
     var url = "https://api.telegram.org/bot" + TELEGRAM_BOT_TOKEN + "/sendMessage";
     var payload = {
@@ -204,7 +205,6 @@ window.addEventListener('load', function() {
     }).catch(function(err) { console.error("Tracking Error:", err); });
   }
 
-  // Erster Aufruf-Tracker
   sendTrackingMessage("🚀 *Projekt-Aufruf:* Die HTML-Seite wurde gerade geöffnet!\n📅 Zeit: " + startTime.toLocaleTimeString('de-DE'));
 
   var gameWonStatus = false;
@@ -266,7 +266,7 @@ window.addEventListener('load', function() {
     worte: {
       ico:'💌',
       title:'Ein paar liebe Worte',
-      text:'Ich weiß, dass ich nicht immer den besten Eindruck gemacht habe – aber ich hope, ich kann dir damit zeigen, dass es mir ernst ist und ich mich wirklich darauf freue, wenn wir uns nach deinen Prüfungen sehen.<br><br>Und wenn du mal ein wenig Ablenkung und jemanden zum Sprechen brauchst, dann melde dich gerne. Ich fands nämlich immer schön mit dir zu telefonieren und bin gerne für dich da, wenn du jemanden brauchst.🥹<br><br>Ich mag dich auf jeden Fall ♡'
+      text:'Ich weiß, dass ich nicht immer den besten Eindruck gemacht habe – aber ich hoffe, ich kann dir damit zeigen, dass es mir ernst ist und ich mich wirklich darauf freue, wenn wir uns nach deinen Prüfungen sehen.<br><br>Und wenn du mal ein wenig Ablenkung und jemanden zum Sprechen brauchst, dann melde dich gerne. Ich fands nämlich immer schön mit dir zu telefonieren und bin gerne für dich da, wenn du jemanden brauchst.🥹<br><br>Ich mag dich auf jeden Fall ♡'
     },
     voucher: {
       ico:'🎉',
@@ -301,7 +301,8 @@ window.addEventListener('load', function() {
       }, 50);
     }
 
-    if (key === 'locked') { Extra.innerHTML = `
+    if (key === 'locked') {
+      extra.innerHTML = `
         <div style="margin-top: 20px;">
           <button class="v-btn primary" id="unlockGameBtn" style="font-size: 14px; padding: 12px 24px;">Hier Spiel starten 🎮</button>
         </div>`;
@@ -358,6 +359,8 @@ window.addEventListener('load', function() {
               <span class="fb-label">Gibt es noch Feedback von deiner Seite? Was hätte besser sein können, was hat dir gut gefallen oder gibt es noch irgendwas, was du mitteilen willst? 🌸</span>
               <textarea class="fb-textarea" id="fbTextComment" placeholder="Deine Worte..."></textarea>
             </div>
+
+            <button class="v-send-btn" id="fbFinalSendBtn" disabled>Gutschein einlösen ♡</button>
           </div>
         </div>`;
         
@@ -365,6 +368,20 @@ window.addEventListener('load', function() {
         document.getElementById('dateWrap').classList.add('show');
         this.style.display = 'none';
       });
+
+      // Funktion zur Freischaltung des Absende-Buttons
+      function checkFeedbackCompletion() {
+        var r1 = document.getElementById('fbHearts1').getAttribute('data-rating') || "0";
+        var r2 = document.getElementById('fbHearts2').getAttribute('data-rating') || "0";
+        var text = document.getElementById('fbTextComment').value.trim();
+        var sendBtn = document.getElementById('fbFinalSendBtn');
+        
+        if (r1 !== "0" && r2 !== "0" && text.length > 0) {
+          sendBtn.disabled = false;
+        } else {
+          sendBtn.disabled = true;
+        }
+      }
 
       function setupHearts(containerId, trackingName) {
         var container = document.getElementById(containerId);
@@ -378,6 +395,7 @@ window.addEventListener('load', function() {
               else h.classList.remove('active');
             });
             sendTrackingMessage("⭐ *Feedback-Klick:* '" + trackingName + "' bewertet mit: " + val + "/5");
+            checkFeedbackCompletion();
           });
         });
       }
@@ -405,10 +423,10 @@ window.addEventListener('load', function() {
 
         document.getElementById('fbSection').style.display = 'block';
         
-        var sendBtn = document.createElement('button');
-        sendBtn.className = 'v-send-btn';
-        sendBtn.textContent = "Gutschein einlösen ♡";
-        sendBtn.addEventListener('click', function() {
+        // Eventlistener für das Freitextfeld hinzufügen
+        document.getElementById('fbTextComment').addEventListener('input', checkFeedbackCompletion);
+
+        document.getElementById('fbFinalSendBtn').addEventListener('click', function() {
           var r1 = document.getElementById('fbHearts1').getAttribute('data-rating') || "0";
           var r2 = document.getElementById('fbHearts2').getAttribute('data-rating') || "0";
           var textComment = document.getElementById('fbTextComment').value || "Kein zusätzlicher Kommentar";
@@ -431,9 +449,6 @@ window.addEventListener('load', function() {
           var whatsappUrl = "https://wa.me/491774805625?text=" + encodeURIComponent(msgText);
           window.open(whatsappUrl, "_blank");
         });
-        
-        voucherSuccess.appendChild(document.createElement('br'));
-        voucherSuccess.appendChild(sendBtn);
       });
     }
     ov.classList.add('open');
@@ -839,7 +854,7 @@ window.addEventListener('load', function() {
     ctx.beginPath(); ctx.moveTo(cx+s*0.1,foot-s*0.72); ctx.lineTo(cx-s*0.28,foot-s*0.55); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(cx+s*0.1,foot-s*0.72); ctx.lineTo(cx+s*0.32,foot-s*0.55);
     ctx.fillStyle='#d4608a'; ctx.beginPath();
-    ctx.moveTo(cx-s*0.22,foot-s*0.38); ctx.lineTo(cx-s*0.24,foot-s*0.75); ctx.quadraticCurveTo(cx,foot-s*0.84,cx+s*0.24,foot-s*0.75); ctx.lineTo(cx+s*0.22,foot-s*0.38);
+    ctx.moveTo(cx-s*0.22,foot-s*0.38); ctx.lineTo(cx-s*0.24,foot-s*0.75); quadraticCurveTo(cx,foot-s*0.84,cx+s*0.24,foot-s*0.75); ctx.lineTo(cx+s*0.22,foot-s*0.38);
     ctx.closePath(); ctx.fill(); ctx.fillStyle='#fff'; ctx.beginPath(); ctx.moveTo(cx-s*0.08,foot-s*0.75); ctx.lineTo(cx,foot-s*0.65); ctx.lineTo(cx+s*0.08,foot-s*0.75);
     ctx.closePath(); ctx.fill(); ctx.fillStyle='#f5a0b8'; ctx.beginPath(); ctx.arc(cx,foot-s*0.64,s*0.042,0,Math.PI*2); ctx.fill();
     ctx.fillStyle=skin; ctx.beginPath(); ctx.roundRect(cx-s*0.07,foot-s*0.86,s*0.14,s*0.13,s*0.04); ctx.fill();
