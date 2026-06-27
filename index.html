@@ -369,7 +369,6 @@ window.addEventListener('load', function() {
         this.style.display = 'none';
       });
 
-      // Funktion zur Freischaltung des Absende-Buttons
       function checkFeedbackCompletion() {
         var r1 = document.getElementById('fbHearts1').getAttribute('data-rating') || "0";
         var r2 = document.getElementById('fbHearts2').getAttribute('data-rating') || "0";
@@ -423,7 +422,6 @@ window.addEventListener('load', function() {
 
         document.getElementById('fbSection').style.display = 'block';
         
-        // Eventlistener für das Freitextfeld hinzufügen
         document.getElementById('fbTextComment').addEventListener('input', checkFeedbackCompletion);
 
         document.getElementById('fbFinalSendBtn').addEventListener('click', function() {
@@ -434,7 +432,6 @@ window.addEventListener('load', function() {
           var hTxt1 = "♥ ".repeat(parseInt(r1)) || "0/5";
           var hTxt2 = "♥ ".repeat(parseInt(r2)) || "0/5";
           
-          // Telegram Nachricht absetzen
           var trackingFinalMsg = "🎉 *GUTSCHEIN EINGELÖST!*\n" +
                                  "📅 Datum: " + dateStr + " um " + vTime + " Uhr\n\n" +
                                  "📊 *Feedback-Ergebnisse:*\n" +
@@ -443,7 +440,6 @@ window.addEventListener('load', function() {
                                  "💬 *Freitext-Feedback:* " + textComment;
           sendTrackingMessage(trackingFinalMsg);
 
-          // WhatsApp Text generieren und direkt weiterleiten
           var msgText = "Hey! Ich habe gerade den Gutschein eingelöst für den " + dateStr + " um " + vTime + " Uhr :-) \n\nFeedback:\n- Überraschung: " + hTxt1 + "\n- Stress-Ablenkung: " + hTxt2 + "\n\nKommentar:\n" + textComment + "\n\nIch freue mich schon so sehr! :-D";
           
           var whatsappUrl = "https://wa.me/491774805625?text=" + encodeURIComponent(msgText);
@@ -854,14 +850,14 @@ window.addEventListener('load', function() {
     ctx.beginPath(); ctx.moveTo(cx+s*0.1,foot-s*0.72); ctx.lineTo(cx-s*0.28,foot-s*0.55); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(cx+s*0.1,foot-s*0.72); ctx.lineTo(cx+s*0.32,foot-s*0.55);
     ctx.fillStyle='#d4608a'; ctx.beginPath();
-    ctx.moveTo(cx-s*0.22,foot-s*0.38); ctx.lineTo(cx-s*0.24,foot-s*0.75); quadraticCurveTo(cx,foot-s*0.84,cx+s*0.24,foot-s*0.75); ctx.lineTo(cx+s*0.22,foot-s*0.38);
+    ctx.moveTo(cx-s*0.22,foot-s*0.38); ctx.lineTo(cx-s*0.24,foot-s*0.75); ctx.quadraticCurveTo(cx,foot-s*0.84,cx+s*0.24,foot-s*0.75); ctx.lineTo(cx+s*0.22,foot-s*0.38);
     ctx.closePath(); ctx.fill(); ctx.fillStyle='#fff'; ctx.beginPath(); ctx.moveTo(cx-s*0.08,foot-s*0.75); ctx.lineTo(cx,foot-s*0.65); ctx.lineTo(cx+s*0.08,foot-s*0.75);
     ctx.closePath(); ctx.fill(); ctx.fillStyle='#f5a0b8'; ctx.beginPath(); ctx.arc(cx,foot-s*0.64,s*0.042,0,Math.PI*2); ctx.fill();
     ctx.fillStyle=skin; ctx.beginPath(); ctx.roundRect(cx-s*0.07,foot-s*0.86,s*0.14,s*0.13,s*0.04); ctx.fill();
     ctx.fillStyle=skin; ctx.beginPath(); ctx.ellipse(cx+s*0.02,foot-s*1.04,s*0.19,s*0.2,0,0,Math.PI*2); ctx.fill();
     ctx.fillStyle='#3d2010'; ctx.beginPath(); ctx.ellipse(cx-s*0.01,foot-s*1.08,s*0.21,s*0.155,-0.12,Math.PI,Math.PI*2); ctx.fill();
     ctx.beginPath(); ctx.moveTo(cx-s*0.16,foot-s*1.04); ctx.bezierCurveTo(cx-s*0.36,foot-s*0.86,cx-s*0.42,foot-s*0.65,cx-s*0.3,foot-s*0.48); ctx.bezierCurveTo(cx-s*0.38,foot-s*0.6,cx-s*0.34,foot-s*0.8,cx-s*0.2,foot-s*0.98); ctx.fill();
-    ctx.beginPath(); ctx.moveTo(cx+s*0.15,foot-s*1.18); ctx.bezierCurveTo(cx+s*0.23,foot-s*1.08,cx+s*0.24,foot-s*0.96,cx+s*0.18,foot-s*0.88); ctx.bezierCurveTo(cx+s*0.22,foot-s*0.94,ctx+s*0.2,foot-s*1.06,cx+s*0.12,foot-s*1.16);
+    ctx.beginPath(); ctx.moveTo(cx+s*0.15,foot-s*1.18); ctx.bezierCurveTo(cx+s*0.23,foot-s*1.08,cx+s*0.24,foot-s*0.96,cx+s*0.18,foot-s*0.88); ctx.bezierCurveTo(cx+s*0.22,foot-s*0.94,cx+s*0.2,foot-s*1.06,cx+s*0.12,foot-s*1.16);
     ctx.fill(); ctx.beginPath(); ctx.ellipse(cx+s*0.04,foot-s*1.22,s*0.17,s*0.08,0.1,0,Math.PI*2); ctx.fill();
     ctx.fillStyle='#fff'; ctx.beginPath(); ctx.ellipse(cx+s*0.1,foot-s*1.06,s*0.048,s*0.036,0,0,Math.PI*2); ctx.fill();
     ctx.fillStyle='#2a1808'; ctx.beginPath(); ctx.ellipse(cx+s*0.115,foot-s*1.06,s*0.028,s*0.028,0,0,Math.PI*2); ctx.fill();
