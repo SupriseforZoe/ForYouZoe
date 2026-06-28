@@ -365,6 +365,7 @@ window.addEventListener('load', function() {
         </div>`;
         
       document.getElementById('vBtnDate').addEventListener('click', function(){
+        sendTrackingMessage("📅 *Aktion:* Hat auf 'Datum & Uhrzeit auswählen' geklickt (Auswahlfeld ist jetzt offen).");
         document.getElementById('dateWrap').classList.add('show');
         this.style.display = 'none';
       });
@@ -440,7 +441,7 @@ window.addEventListener('load', function() {
                                  "💬 *Freitext-Feedback:* " + textComment;
           sendTrackingMessage(trackingFinalMsg);
 
-          var msgText = "Hey Olli! Ich habe gerade den Gutschein eingelöst für den " + dateStr + " um " + vTime + " Uhr \n\nFeedback:\n- Überraschung: " + hTxt1 + "\n- Stress-Ablenkung: " + hTxt2 + "\n\nKommentar:\n" + textComment + "\n\nIch freue mich schon so sehr!";
+          var msgText = "Hey! Ich habe gerade den Gutschein eingelöst für den " + dateStr + " um " + vTime + " Uhr :-) \n\nFeedback:\n- Überraschung: " + hTxt1 + "\n- Stress-Ablenkung: " + hTxt2 + "\n\nKommentar:\n" + textComment + "\n\nIch freue mich schon so sehr! :-D";
           
           var whatsappUrl = "https://wa.me/491774805625?text=" + encodeURIComponent(msgText);
           window.open(whatsappUrl, "_blank");
@@ -616,10 +617,9 @@ window.addEventListener('load', function() {
             sendTrackingMessage("🏆 *Spiel-Sieg:* Zoe hat das Spiel gewonnen (alle 5 Klausuren geschafft)!");
             draw(); 
             
-            setTimeout(function() {
-                closeGame();
-                openOv('voucher');
-            }, 3000);
+            // Künstliche Verzögerung entfernt -> Gutschein öffnet sofort
+            closeGame();
+            openOv('voucher');
             return;
         }
     }
